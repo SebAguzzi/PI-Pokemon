@@ -1,6 +1,6 @@
 const axios = require("axios");
-const { Pokemon, Type } = require("../db");
-const { getPokesApi, getPokesDB } = require('../helpers')
+const { Types } = require("../db");
+const { getPokesApi, getPokesDB } = require('../helpers');
 
 
 const getAllPokemons = async () => {
@@ -15,11 +15,11 @@ const getTypes = async () => {
   const mapTypes = types.data.results.map((type) => type.name);
 
   // Creo todos los tipos en mi base de datos
-  mapTypes.forEach((type) => {
-    Type.findOrCreate({where: {name: type}})
+  mapTypes.forEach((types) => {
+    Types.findOrCreate({where: {name: types}})
   })
 
-  const typeDB = await Type.findAll();
+  const typeDB = await Types.findAll();
 
   return typeDB;  
 }

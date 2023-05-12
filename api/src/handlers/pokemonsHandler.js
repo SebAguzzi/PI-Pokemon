@@ -1,6 +1,6 @@
-const { createPokemon, getAllPokemons } = require('../controllers/controllers')
-const { Pokemon, Type } = require('../db');
-const { Op } = require('sequelize');
+const { getAllPokemons } = require('../controllers/controllers')
+const { Pokemon, Types } = require('../db');
+
 
 const getAllPokemonsHandler = async (req, res) => {
     const { name } = req.query;
@@ -41,12 +41,34 @@ const getPokemonHandlerById = async (req, res) => {
 
 const createPokemonHandler = async (req, res) => {
     try {
-        const { name, image, health, attack, defense, speed, height, weight, type } = req.body;
-        const newPokemon = await createPokemon(name, image, health, attack, defense, speed, height, weight, type);
-        res.status(201).json(newPokemon);        
+        const { name, image, health, attack, defense, speed, height, weight, types } = req.body;
+        if (!name) {
+            return res.status(404).send("Name not found");
+        }
+        const newPokemons = await Pokemon.create({
+            name: name,
+            health: health,
+            attack: attack,
+            defense: defense,
+            speed: speed,
+            height: height,
+            weight: weight,
+            image: image,
+        });
+
+        let typesDB = await Types.findAll({
+            where: {
+                name: types,
+            },
+        });
+
+        await newPokemons.addTypes(typesDB);
+
+        return res.status(200).json(newPokemons);
+
     } catch (error) {
-        res.status(400).json({error: error.message})
-    }    
+        res.status(404).send({ error: error.message })
+    }
 }
 
 const deletePokemon = async (req, res) => {
@@ -65,13 +87,13 @@ const deletePokemon = async (req, res) => {
 
 const updatePokemon = async (req, res) => {
     const { id } = req.params;
-    let { name, hp, attack, defense, speed, height, weight, img } = req.body;
+    let { name, health, attack, defense, speed, height, weight, img } = req.body;
     try {
         let updatedPokemon = await Pokemon.findOne({ where: { id: id } })
         if (updatedPokemon) {
             await Pokemon.update({
                 name: name ? name : updatedPokemon.name,
-                hp: hp ? hp : updatedPokemon.hp,
+                health: health ? health : updatedPokemon.health,
                 attack: attack ? attack : updatedPokemon.attack,
                 defense: defense ? defense : updatedPokemon.defense,
                 speed: speed ? speed : updatedPokemon.speed,

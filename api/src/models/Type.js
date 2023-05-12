@@ -3,9 +3,10 @@ const { DataTypes } = require('sequelize');
 // Luego le injectamos la conexion a sequelize.
 module.exports = (sequelize) => {
   // defino el modelo
-  sequelize.define('type', {
+  sequelize.define('types', {
 name: {
     type: DataTypes.STRING,
   }
-})
+},
+{timestamps: false})
 }

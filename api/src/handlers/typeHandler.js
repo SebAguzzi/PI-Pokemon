@@ -1,10 +1,10 @@
 const { getTypes } = require('../controllers/controllers')
-const { Type } = require('../db')
+const { Types } = require('../db')
 
 const getPokemonTypes = async (req, res) => {
     await getTypes();
     try {
-        const findTypes = await Type.findAll()
+        const findTypes = await Types.findAll()
         res.send(findTypes.map((type) => {
             return {
                 id: type.id,

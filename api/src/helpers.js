@@ -1,5 +1,5 @@
 const axios = require('axios');
-const { Pokemon, Type } = require('./db')
+const { Pokemon, Types } = require('./db')
 
 const getPokesApi = async () => {
     try {
@@ -15,14 +15,14 @@ const getPokesApi = async () => {
                 pokeData.push({
                     id: p.data.id,
                     name: p.data.name,
-                    hp: p.data.stats[0].base_stat,
+                    health: p.data.stats[0].base_stat,
                     attack: p.data.stats[1].base_stat,
                     defense: p.data.stats[2].base_stat,
                     speed: p.data.stats[5].base_stat,
                     height: p.data.height,
                     weight: p.data.weight,
                     types: p.data.types.map((t) => t.type.name),
-                    img: p.data.sprites.other.home.front_default,
+                    image: p.data.sprites.other.home.front_default,
                 })
             })
             return pokeData;
@@ -35,7 +35,7 @@ const getPokesApi = async () => {
 
 const getPokesDB = async () => {
     const pokesDB = await Pokemon.findAll({
-        include: Type,
+        include: Types,
     });
     return pokesDB;
 }
