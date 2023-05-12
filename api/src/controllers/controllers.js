@@ -10,23 +10,6 @@ const getAllPokemons = async () => {
   return allPokes;  
 }
 
-const createPokemon = async ( name, image, health, attack, defense, speed, height, weight, type) => {
-  const newPokemon = await Pokemon.create({
-    name,
-    image,
-    health,
-    attack,
-    defense,
-    speed,
-    height,
-    weight,
-    type
-  });
-
-  return newPokemon;
-
-};
-
 const getTypes = async () => {
   const types = await axios('https://pokeapi.co/api/v2/type');
   const mapTypes = types.data.results.map((type) => type.name);
@@ -42,7 +25,6 @@ const getTypes = async () => {
 }
 
 module.exports = {
-  createPokemon,
   getTypes,
   getAllPokemons,
 };
