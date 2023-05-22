@@ -5,7 +5,7 @@ const NavBar = () => {
     return(
         <div className={style.mainCointainer}>
             <Link to='/home'>HOME</Link>
-            <Link to='/form'>FORM</Link>            
+            <Link to='/form'>CREATE</Link>                     
         </div>
     )
 }

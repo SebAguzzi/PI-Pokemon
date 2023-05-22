@@ -6,15 +6,15 @@ import NavBar from './components/NavBar/NavBar';
 function App() {
 
   const location = useLocation();
-  
+    
 
   return (
     <div className="App">
       {location.pathname!=='/' && <NavBar />}
       <Route exact path='/' component={Landing}/>
-      <Route exact path='/home' component={Home}/>
-      <Route exact path='/detail' component={Detail}/>
-      <Route exact path='/form' component={Form}/>
+      <Route path='/home' component={Home}/>
+      <Route path='/detail/:id' component={Detail}/>
+      <Route path='/form' component={Form}/>
     </div>
   );
 }

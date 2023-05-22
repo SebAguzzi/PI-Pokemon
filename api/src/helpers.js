@@ -4,10 +4,10 @@ const { Pokemon, Types } = require('./db')
 const getPokesApi = async () => {
     try {
         let pokeData = [];
-        const pokeApi = await axios("https://pokeapi.co/api/v2/pokemon")
+        const pokeApi = await axios("https://pokeapi.co/api/v2/pokemon?offset=0&limit=150");
         
         // traigo los datos de cada pokemon
-        let pokeInfo = pokeApi.data.results.map((pokemon) => axios(pokemon.url))
+        let pokeInfo = pokeApi.data.results.map((pokemon) => axios(pokemon.url));
 
         // filtro solo los datos que necesito de cada pokemon
         let pokeResults = axios.all(pokeInfo).then((poke) => {
@@ -21,7 +21,7 @@ const getPokesApi = async () => {
                     speed: p.data.stats[5].base_stat,
                     height: p.data.height,
                     weight: p.data.weight,
-                    types: p.data.types.map((t) => t.type.name),
+                    types: p.data.types.map((t) => ({name: t.type.name})),
                     image: p.data.sprites.other.home.front_default,
                 })
             })
@@ -31,7 +31,7 @@ const getPokesApi = async () => {
     } catch (error) {
         console.log('Ha habido un error en getPokesApi: ', error)
     }
-}
+};
 
 const getPokesDB = async () => {
     const pokesDB = await Pokemon.findAll({

@@ -45,26 +45,28 @@ const createPokemonHandler = async (req, res) => {
         if (!name) {
             return res.status(404).send("Name not found");
         }
+        
+
         const newPokemons = await Pokemon.create({
             name: name,
             health: health,
             attack: attack,
             defense: defense,
-            speed: speed,
-            height: height,
-            weight: weight,
+            speed: speed ? speed : null,
+            height: height ? height : null,
+            weight: weight ? weight : null,
             image: image,
         });
 
         let typesDB = await Types.findAll({
             where: {
-                name: types,
+                name: types.length > 0 ? types : ['unknown'],
             },
         });
 
         await newPokemons.addTypes(typesDB);
 
-        return res.status(200).json(newPokemons);
+        return res.status(200).json("Pokemon created.");
 
     } catch (error) {
         res.status(404).send({ error: error.message })

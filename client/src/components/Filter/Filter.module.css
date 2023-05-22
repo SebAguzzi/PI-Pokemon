@@ -1,0 +1,36 @@
+.container{
+    background-color: #82271753;
+    width: 100%;
+    border-radius: 50px;
+  }
+
+  .container button {
+    padding: 10px 20px;
+    margin: 25px;
+    text-decoration: none;
+    color: #333;
+    transition: all 0.3s ease-in-out;
+    border-radius: 5px;
+    border: 1px solid black;
+  }
+
+  .container button:hover {
+    transform: translateX(10px);
+    background-color: #c55661;
+    color: #fff;
+  }
+  
+  .container button:active {
+    transform: translateX(-10px);
+    background-color: #ffb74d;
+  }
+
+  .select {
+    padding: 10px 20px;
+    margin: 25px;
+    text-decoration: none;
+    color: #333;
+    transition: all 0.3s ease-in-out;
+    border: 1px solid black;
+    border-radius: 5px;
+  }
