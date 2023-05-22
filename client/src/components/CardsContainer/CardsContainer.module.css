@@ -13,7 +13,7 @@
     justify-content: center;
     align-items: center;
     margin: 20px auto 0 auto;
-    background-color: #82271753;
+    background-color: #9d999932;
     border-radius: 15px 15px 0px 0px;
     
 }
@@ -24,7 +24,7 @@
     font-size: 14px;
     border: none;
     background-color: transparent;
-    color: #333;
+    color: #000000;
     cursor: pointer;
     transition: color 0.3s ease;
 }
@@ -39,7 +39,7 @@
 }
 
 .container .pagination .active {
-    background-color: #91f2ff71;
+    background-color: #ffffff;
     backdrop-filter: blur(10px);
     padding: 5px;
     border-radius: 7px;
