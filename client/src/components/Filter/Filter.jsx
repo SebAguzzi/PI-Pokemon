@@ -4,6 +4,7 @@ import {
   filterByApi,
   filterByDatabase,
   filterType,
+  getPokemons,
   sortByAttack,
   sortByName,
 } from "../../redux/actions";
@@ -81,6 +82,11 @@ const Filter = ({ setPage }) => {
       <button value="desc" onClick={clickHandlerName}>
         Z-A
       </button>
+      <button onClick={() => {
+        setPage(1)
+        dispatch(filterType())
+        dispatch(getPokemons())
+      }}>Reset</button>
     </div>
   );
 };

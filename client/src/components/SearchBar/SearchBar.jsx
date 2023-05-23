@@ -1,12 +1,21 @@
-import useGetPokemonByName from "../../hooks/useGetPokemonByName";
-import style from "./SearchBar.module.css"
+import { useState } from "react";
+import style from "./SearchBar.module.css";
+import { useDispatch } from "react-redux";
+import { getPokemonName } from "../../redux/actions";
+
 
 const SearchBar = () => {
     
-  const [pokemon, handlePokemonChange] = useGetPokemonByName();
+  const dispatch = useDispatch();
+  const [searchTerm, setSearchTerm] = useState("");  
 
-  const handlePokemonSelection = (event) => {
-    handlePokemonChange(event);
+  const handleInputChange = (event) => {
+    const { value } = event.target;
+    setSearchTerm(value);
+  };
+
+  const handleSearch = () => {
+    dispatch(getPokemonName(searchTerm));   
   };
 
   return (
@@ -14,9 +23,10 @@ const SearchBar = () => {
       <input className={style.SearchBar}
         type="text"
         placeholder="Search pokemon"
-        value={pokemon}
-        onChange={handlePokemonSelection}
+        value={searchTerm}
+        onChange={handleInputChange}
       />
+      <button onClick={handleSearch}>Search</button>
       </div>
   );
 };

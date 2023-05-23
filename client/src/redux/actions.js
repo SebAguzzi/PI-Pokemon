@@ -62,7 +62,7 @@ export const filterTypeTwo = (firstType, secondType) => {
 
 export const filterByDatabase = () => {
   return async function (dispatch) {
-      const apiData = await axios.get('http://localhost:3001/pokemon')
+      const apiData = await axios('http://localhost:3001/pokemon')
       const pokemons = apiData.data
       const pokemonsDb = pokemons.filter((pokemon) => typeof  pokemon.id === 'string')
       dispatch({ type: 'FILTER_DATABASE', payload: pokemonsDb })
