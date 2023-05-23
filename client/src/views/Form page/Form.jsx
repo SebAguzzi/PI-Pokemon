@@ -115,7 +115,7 @@ const Form = () => {
               name="speed"
             />
             <div className={style.errors}>
-              {errors.speed && <span>{errors.speed}</span>}
+            {errors.speed && <span>{errors.speed}</span>}
             </div>
           </div>
 

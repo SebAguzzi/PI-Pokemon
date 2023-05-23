@@ -84,7 +84,7 @@ const Filter = ({ setPage }) => {
       </button>
       <button onClick={() => {
         setPage(1)
-        dispatch(filterType())
+        dispatch(filterType("all"))
         dispatch(getPokemons())
       }}>Reset</button>
     </div>

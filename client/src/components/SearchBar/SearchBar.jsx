@@ -15,7 +15,7 @@ const SearchBar = () => {
   };
 
   const handleSearch = () => {
-    dispatch(getPokemonName(searchTerm));   
+    dispatch(getPokemonName(searchTerm)); 
   };
 
   return (

@@ -74,13 +74,13 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         pokemons: action.payload,
-    };
+      };
 
     case FILTER_API:
       return {
         ...state,
         pokemons: action.payload,
-    };
+      };
 
     case ORDER_BY_ATTACK:
       const orderAttack =
@@ -128,8 +128,8 @@ const rootReducer = (state = initialState, action) => {
     case POST_POKEMON:
       return {
         ...state,
-        pokemons: [...state.pokemons, action.payload]
-      }
+        pokemons: [...state.pokemons, action.payload],
+      };
 
     default:
       return { ...state };
