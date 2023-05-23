@@ -16,7 +16,7 @@ import {
 
 const initialState = {
   pokemons: [],
-  pokemonFilter: [],
+  pokemonFilter: [], // no se modifica
   infoType: [],
   pokemonDetail: [],
 };
@@ -105,7 +105,7 @@ const rootReducer = (state = initialState, action) => {
               if (first > second) return 1;
               if (first < second) return -1;
               return 0;
-            })
+            }) 
           : state.pokemons.slice().sort((a, b) => {
               let first = a.name.toLowerCase();
               let second = b.name.toLowerCase();
@@ -113,6 +113,9 @@ const rootReducer = (state = initialState, action) => {
               if (first < second) return 1;
               return 0;
             });
+            // los metodos de ordenamiento se aplican sobre mi estado pokemons
+            // el cual ya puede tener algun filtro aplicado
+            // por lo que permite aplicar filtros en simultaneo
       return {
         ...state,
         pokemons: orderName,

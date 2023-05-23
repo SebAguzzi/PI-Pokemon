@@ -10,11 +10,10 @@ const useGetPokemonById = () => {
     const pokemon = useSelector(state => state.pokemonDetail);
 
     useEffect(() => {
-        setTimeout(() => {
-            dispatch(getPokemonId(id))
-        },1000)
+            dispatch(getPokemonId(id))       
+        //el cleanDetail limpia el componente Detail al salir
         return () => {
-            dispatch(cleanDetail());
+           dispatch(cleanDetail());
         }
     }, [dispatch, id]);
 
