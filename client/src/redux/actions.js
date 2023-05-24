@@ -5,7 +5,6 @@ export const GET_POKEMON_ID = "GET_POKEMON_ID";
 export const GET_POKEMON_NAME = "GET_POKEMON_NAME";
 export const GET_TYPES = "GET_TYPES";
 export const FILTER_TYPE = "FILTER_TYPE";
-export const FILTER_TYPE_TWO = "FILTER_TYPE_TWO";
 export const FILTER_DATABASE = "FILTER_DATABASE";
 export const FILTER_API = "FILTER_API";
 export const ORDER_BY_ATTACK = "ORDER_BY_ATTACK";
@@ -50,13 +49,6 @@ export const filterType = (type) => {
   return {
     type: FILTER_TYPE,
     payload: type,
-  };
-};
-
-export const filterTypeTwo = (firstType, secondType) => {
-  return {
-    type: FILTER_TYPE_TWO,
-    payload: { firstType, secondType },
   };
 };
 

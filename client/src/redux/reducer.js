@@ -2,7 +2,6 @@ import {
   FILTER_TYPE,
   FILTER_DATABASE,
   FILTER_API,
-  FILTER_TYPE_TWO,
   GET_POKEMONS,
   GET_POKEMON_ID,
   GET_POKEMON_NAME,
@@ -15,7 +14,7 @@ import {
 } from "./actions";
 
 const initialState = {
-  pokemons: [],
+  pokemons: [], // lo muestra CardsContainer, si se modifica
   pokemonFilter: [], // no se modifica
   infoType: [],
   pokemonDetail: [],
@@ -59,18 +58,7 @@ const rootReducer = (state = initialState, action) => {
         pokemons: filterType,
       };
 
-    case FILTER_TYPE_TWO:
-      const { firstType, secondType } = action.payload;
-      const filteredPokemonType = state.pokemons.filter(
-        (pokemon) =>
-          pokemon.type.includes(firstType) && pokemon.type.includes(secondType)
-      );
-      return {
-        ...state,
-        pokemonFilter: filteredPokemonType,
-      };
-
-    case FILTER_DATABASE:
+        case FILTER_DATABASE:
       return {
         ...state,
         pokemons: action.payload,
@@ -115,7 +103,7 @@ const rootReducer = (state = initialState, action) => {
             });
             // los metodos de ordenamiento se aplican sobre mi estado pokemons
             // el cual ya puede tener algun filtro aplicado
-            // por lo que permite aplicar filtros en simultaneo
+            // por lo que permite aplicar filtros sin descartar el anterior
       return {
         ...state,
         pokemons: orderName,
