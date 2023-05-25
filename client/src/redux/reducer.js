@@ -49,8 +49,8 @@ const rootReducer = (state = initialState, action) => {
     case FILTER_TYPE:
       let filterType =
         action.payload === "all"
-          ? [...state.pokemonFilter]
-          : [...state.pokemonFilter].filter((t) =>
+          ? [...state.pokemons]
+          : [...state.pokemons].filter((t) =>
               t.types?.some((e) => e.name === action.payload)
             );
       return {

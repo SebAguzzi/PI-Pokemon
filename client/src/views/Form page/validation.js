@@ -22,13 +22,13 @@ const validation = (value) => {
     if(value.defense < 0 || value.defense > 255) errors.defense = "Defense must be between 0 and 255";
     
     //speed
-    if(value.speed < 0 || value.speed > 255) errors.speed = "Speed must be between 0 and 255";
+    if(value.speed && value.speed < 1 || value.speed > 255) errors.speed = "Speed must be between 0 and 255";
     
     //height
-    if(value.height < 0 || value.height > 40) errors.height = "Height must be between 0 and 40";
+    if(value.height && value.height < 1 || value.height > 40) errors.height = "Height must be between 0 and 40";
     
     //weight
-    if(value.weight < 0 || value.weight > 2500) errors.weight = "Weight must be between 0 and 2500";
+    if(value.weight && value.weight < 1 || value.weight > 2500) errors.weight = "Weight must be between 0 and 2500";
     
     return errors;
 };
