@@ -35,6 +35,10 @@ const Filter = ({ setPage }) => {
     setPage(1);
   };
 
+  const resetInput = () => { // resetea el select de types
+  const selects = document.querySelectorAll(".resetSelect");
+        selects.forEach((select) => (select.selectedIndex = 0));
+  }
   const types = [
     "all",
     "bug",
@@ -61,7 +65,7 @@ const Filter = ({ setPage }) => {
 
   return (
     <div className={style.container}>
-      <select className={style.select} onChange={handleTypeFilter}>
+      <select className={`${style.select} resetSelect`} onChange={handleTypeFilter}>
         {types.map((e) => (
           <option key={e} value={e}>
             {e}
@@ -86,6 +90,7 @@ const Filter = ({ setPage }) => {
         setPage(1)
         dispatch(filterType("all"))
         dispatch(getPokemons())
+        resetInput()
       }}>Reset</button>
     </div>
   );

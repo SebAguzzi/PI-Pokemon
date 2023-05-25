@@ -12,11 +12,12 @@ const SearchBar = () => {
   const handleInputChange = (event) => {
     const { value } = event.target;
     setSearchTerm(value);
-  };
+};
 
   const handleSearch = () => {
     dispatch(getPokemonName(searchTerm)); 
-  };
+    setSearchTerm("");
+};
 
   return (
     <div>
