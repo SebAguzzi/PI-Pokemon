@@ -15,7 +15,7 @@ export const POST_POKEMON = "POST_POKEMON";
 
 export const getPokemons = () => {
   return async function (dispatch) {
-    const apiData = await axios("https://pi-pokemon-production-5f47.up.railway.app/pokemon");
+    const apiData = await axios("http://localhost:3001/pokemon");
     const pokemons = apiData.data;
     dispatch({ type: GET_POKEMONS, payload: pokemons });
   };
@@ -23,7 +23,7 @@ export const getPokemons = () => {
 
 export const getPokemonId = (id) => {
   return async function (dispatch) {
-    const apiData = await axios(`https://pi-pokemon-production-5f47.up.railway.app/pokemon/${id}`);
+    const apiData = await axios(`http://localhost:3001/pokemon/${id}`);
     const pokemon = apiData.data;
     dispatch({ type: GET_POKEMON_ID, payload: pokemon });
   };
@@ -31,7 +31,7 @@ export const getPokemonId = (id) => {
 
 export const getPokemonName = (name) => {
   return async function (dispatch) {
-    const apiData = await axios(`https://pi-pokemon-production-5f47.up.railway.app/pokemon?name=${name}`);
+    const apiData = await axios(`http://localhost:3001/pokemon?name=${name}`);
     const pokemon = apiData.data;
     dispatch({ type: GET_POKEMON_NAME, payload: pokemon });
   };
@@ -39,7 +39,7 @@ export const getPokemonName = (name) => {
 
 export const getTypes = () => {
   return async function (dispatch) {
-    const apiData = await axios("https://pi-pokemon-production-5f47.up.railway.app/type");
+    const apiData = await axios("http://localhost:3001/type");
     const type = apiData.data;
     dispatch({ type: GET_TYPES, payload: type });
   };
@@ -54,7 +54,7 @@ export const filterType = (type) => {
 
 export const filterByDatabase = () => {
   return async function (dispatch) {
-      const apiData = await axios('https://pi-pokemon-production-5f47.up.railway.app/pokemon')
+      const apiData = await axios("http://localhost:3001/pokemon")
       const pokemons = apiData.data
       const pokemonsDb = pokemons.filter((pokemon) => typeof  pokemon.id === 'string')
       dispatch({ type: 'FILTER_DATABASE', payload: pokemonsDb })
@@ -63,7 +63,7 @@ export const filterByDatabase = () => {
 
 export const filterByApi = () => {
   return async function (dispatch) {
-      const apiData = await axios('https://pi-pokemon-production-5f47.up.railway.app/pokemon')
+      const apiData = await axios("http://localhost:3001/pokemon")
       const pokemons = apiData.data
       const pokemonsApi = pokemons.filter((pokemon) => typeof  pokemon.id === 'number')
       dispatch({ type: 'FILTER_API', payload: pokemonsApi })
@@ -86,7 +86,7 @@ export const sortByName = (method) => {
 
 export const deletedPokemon = (id) => {
   return async function (dispatch) {
-    const apiData = await axios.delete(`https://pi-pokemon-production-5f47.up.railway.app/pokemon/${id}`);
+    const apiData = await axios.delete(`http://localhost:3001/pokemon/${id}`);
     const pokemon = apiData.data;
     dispatch({ type: DELETE_POKEMON, payload: pokemon });
   };
@@ -100,7 +100,7 @@ export const cleanDetail = () => {
 
 export const postPokemon = (pokemon) => {
   return async (dispatch) => {
-    const apiData = await axios.post('https://pi-pokemon-production-5f47.up.railway.app/pokemon', pokemon)
+    const apiData = await axios.post("http://localhost:3001/pokemon", pokemon)
     const poke = apiData.data;
     dispatch({
       type: POST_POKEMON,
